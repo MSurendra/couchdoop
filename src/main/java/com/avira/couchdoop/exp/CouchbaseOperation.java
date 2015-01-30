@@ -23,7 +23,17 @@ package com.avira.couchdoop.exp;
  * Operation type which can be performed by Couchbase.
  */
 public enum CouchbaseOperation {
+  UPSERT,
+  /**
+   * @deprecated use {@link com.avira.couchdoop.exp.CouchbaseOperation#UPSERT} instead
+   */
+  @Deprecated
   SET,
+  INSERT,
+  /**
+   * @deprecated use {@link com.avira.couchdoop.exp.CouchbaseOperation#INSERT} instead
+   */
+  @Deprecated
   ADD,
   REPLACE,
   APPEND,

@@ -46,7 +46,8 @@ public class CouchbaseOutputFormat extends OutputFormat<String, CouchbaseAction>
   private static final Logger LOGGER = LoggerFactory.getLogger(CouchbaseOutputFormat.class);
 
   public static class CouchbaseRecordWriter extends RecordWriter<String, CouchbaseAction> {
-    
+
+    @Deprecated
     private CouchbaseClient couchbaseClient;
 
     private long nonExistentTouchedKeys = 0;
@@ -70,8 +71,10 @@ public class CouchbaseOutputFormat extends OutputFormat<String, CouchbaseAction>
                                              String key, Object value, int expiry) {
       switch (operation) {
         case SET:
+        case UPSERT:
           return couchbaseClient.set(key, expiry, value);
         case ADD:
+        case INSERT:
           return couchbaseClient.add(key, expiry, value);
         case REPLACE:
           return couchbaseClient.replace(key, expiry, value);
